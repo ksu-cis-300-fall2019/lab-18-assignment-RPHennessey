@@ -22,7 +22,7 @@ namespace Ksu.Cis300.NameLookup
         /// <summary>
         /// The information for each name.
         /// </summary>
-        private Dictionary<string, FrequencyAndRank> _nameInformation = new Dictionary<string, FrequencyAndRank>();
+        private Dictionary<string, FrequencyAndRank> _names = new Dictionary<string, FrequencyAndRank>();
 
         /// <summary>
         /// Constructs the GUI.
@@ -65,8 +65,8 @@ namespace Ksu.Cis300.NameLookup
             {
                 try
                 {
-                    _nameInformation = ReadFile(uxOpenDialog.FileName);
-                    _nameInformation.Drawing.Show();
+                    _names = ReadFile(uxOpenDialog.FileName);
+                    _names.Drawing.Show();
                 }
                 catch (Exception ex)
                 {
@@ -83,7 +83,7 @@ namespace Ksu.Cis300.NameLookup
         private void uxLookup_Click(object sender, EventArgs e)
         {
             string name = uxName.Text.Trim().ToUpper();
-            if (_nameInformation.TryGetValue(name, out FrequencyAndRank info))
+            if (_names.TryGetValue(name, out FrequencyAndRank info))
             {
                 uxFrequency.Text = info.Frequency.ToString();
                 uxRank.Text = info.Rank.ToString();
@@ -94,6 +94,22 @@ namespace Ksu.Cis300.NameLookup
                 uxFrequency.Text = "";
                 uxRank.Text = "";
             }
+        }
+
+        private void Remove_Click(object sender, EventArgs e)
+        {
+            string name = uxName.Text.Trim().ToUpper();
+            if (_names.Remove(name))
+            {
+                _names.Drawing.Show();
+            }
+            else
+            {
+                MessageBox.Show("Name not found.");
+            }
+            uxFrequency.Text = "";
+            uxRank.Text = "";
+
         }
     }
 }
