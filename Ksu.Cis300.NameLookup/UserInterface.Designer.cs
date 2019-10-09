@@ -122,6 +122,7 @@
             // 
             // uxRemove
             // 
+            this.uxRemove.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uxRemove.Location = new System.Drawing.Point(187, 106);
             this.uxRemove.Name = "uxRemove";
             this.uxRemove.Size = new System.Drawing.Size(149, 41);
